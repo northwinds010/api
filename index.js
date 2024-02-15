@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use a porta fornecida pelo Heroku ou 3000 localmente
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -53,4 +53,4 @@ app.get('/pessoas/:pessoa', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Server started'));
+app.listen(port, () => console.log(`Server started on port ${port}`));
