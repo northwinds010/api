@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000; // Use a porta fornecida pelo Heroku ou 3000 localmente
+const port = process.env.PORT || 3000;
+
+const cadastraUsuario = require('./cadastroUsuario/cadastraUsuario');
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-
+app.use('/cadastraUsuario', cadastraUsuario);
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('rafaell_9122', 'rafaell_9122', '17Uh0Ky2aV', {
@@ -31,14 +33,6 @@ app.get('/tables', async (req, res) => {
   }
 });
 
-app.get('/pessoas', async (req, res) => {
-  try {
-    const [pessoas] = await sequelize.query('SELECT * FROM Pessoas');
-    res.json(pessoas);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
 app.get('/pessoas/:pessoa', async (req, res) => {
   try {
     const pessoa = req.params.pessoa;
