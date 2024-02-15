@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var cors = require('cors');
 const port = process.env.PORT || 3000;
 
 const cadastraUsuario = require('./cadastroUsuario/cadastraUsuario');
@@ -9,6 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/cadastraUsuario', cadastraUsuario);
+
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('rafaell_9122', 'rafaell_9122', '17Uh0Ky2aV', {
@@ -46,5 +48,5 @@ app.get('/tables', async (req, res) => {
 //     res.status(500).json({ error: err.message });
 //   }
 // });
-
+app.use(cors());
 app.listen(port, () => console.log(`Server started on port ${port}`));
