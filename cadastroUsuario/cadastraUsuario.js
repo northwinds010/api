@@ -7,7 +7,7 @@ const sequelize = new Sequelize('rafaell_9122', 'rafaell_9122', '17Uh0Ky2aV', {
   dialect: 'mysql'
 });
 
-app.get('/pessoas', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
       const [pessoas] = await sequelize.query('SELECT * FROM Pessoas');
       res.json(pessoas);

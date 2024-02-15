@@ -33,18 +33,18 @@ app.get('/tables', async (req, res) => {
   }
 });
 
-app.get('/pessoas/:pessoa', async (req, res) => {
-  try {
-    const pessoa = req.params.pessoa;
-    const [pessoas] = await sequelize.query(`SELECT * FROM Pessoas WHERE nome = :pessoa`, 
-    { 
-      replacements: { pessoa: pessoa }, 
-      type: sequelize.QueryTypes.SELECT 
-    });
-    res.json(pessoas);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// app.get('/pessoas/:pessoa', async (req, res) => {
+//   try {
+//     const pessoa = req.params.pessoa;
+//     const [pessoas] = await sequelize.query(`SELECT * FROM Pessoas WHERE nome = :pessoa`, 
+//     { 
+//       replacements: { pessoa: pessoa }, 
+//       type: sequelize.QueryTypes.SELECT 
+//     });
+//     res.json(pessoas);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
